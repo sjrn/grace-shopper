@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import Products from './products';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -40,7 +41,7 @@ const Main = (props) => {
         }
       </nav>
       <hr />
-      
+      <Products/>
     </div>
   )
 }
