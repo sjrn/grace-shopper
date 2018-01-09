@@ -17,7 +17,6 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>BOILERMAKER</h1>
       <AppBar
         title="Grace Shoppa"
         iconElementRight={
@@ -41,7 +40,7 @@ const Main = (props) => {
         }
       </nav>
       <hr />
-      {children}
+      
     </div>
   )
 }
