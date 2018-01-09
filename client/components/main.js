@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
 
 /**
  * COMPONENT
@@ -15,7 +17,13 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>BOILERMAKER</h1>
+      <AppBar
+        title="Grace Shoppa"
+        iconElementRight={
+          <RaisedButton label='TEMP'>
+          </RaisedButton>
+        }
+      />
       <nav>
         {
           isLoggedIn
@@ -32,7 +40,7 @@ const Main = (props) => {
         }
       </nav>
       <hr />
-      {children}
+      
     </div>
   )
 }
