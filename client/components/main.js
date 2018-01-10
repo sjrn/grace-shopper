@@ -18,6 +18,7 @@ const Main = (props) => {
 
   return (
     <div>
+      {/* TODO: Redirect to home page upon title click */}
       <AppBar
         title="Grace Shoppa"
         iconElementRight={
