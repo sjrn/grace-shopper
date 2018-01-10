@@ -4,14 +4,24 @@ import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
+import Products from './components/products';
+import SingleProduct from './components/single-product';
 import {me} from './store'
+import store from './store';
+import { getProductList } from './store/products';
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount () {
-    this.props.loadInitialData()
+    //this.props.loadInitialData()
+
+    console.log("Fetching products");
+
+    // Fetch list of products
+    const productsThunk = getProductList();
+    store.dispatch(productsThunk);
   }
 
   render () {
@@ -24,6 +34,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/products/:id" component={SingleProduct} />
             {
               isLoggedIn &&
                 <Switch>
@@ -31,8 +42,8 @@ class Routes extends Component {
                   <Route path="/home" component={UserHome} />
                 </Switch>
             }
-            {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            {/* Displays our Products component for default case */}
+            <Route component={Products} />
           </Switch>
         </Main>
       </Router>
