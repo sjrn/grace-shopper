@@ -41,7 +41,7 @@ const Main = (props) => {
         }
       </nav>
       <hr />
-      <Products/>
+      {children}
     </div>
   )
 }
