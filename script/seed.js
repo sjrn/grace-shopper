@@ -9,6 +9,14 @@
  *
  * Now that you've got the main idea, check it out in practice below!
  */
+
+//  Note: If running seed fails because of asynch syntax, try:
+// npm install - g n
+// n latest
+// or (the one used here):
+// brew install node
+// npm install - g npm@latest
+
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 
