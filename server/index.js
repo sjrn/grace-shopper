@@ -53,6 +53,14 @@ const createApp = () => {
 
   // auth and api routes
   app.use('/auth', require('./auth'))
+  app.use('/api', (req, res, next) => {
+    if(!req.session.cart){
+      req.session.cart = []
+    }
+
+    next()
+  })
+
   app.use('/api', require('./api'))
 
   // static file-serving middleware

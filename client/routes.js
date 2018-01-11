@@ -6,22 +6,14 @@ import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
 import Products from './components/products';
 import SingleProduct from './components/single-product';
-import {me} from './store'
-import store from './store';
-import { getProductList } from './store/products';
+import { me, getCartItems, getProductList} from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount () {
-    //this.props.loadInitialData()
-
-    console.log("Fetching products");
-
-    // Fetch list of products
-    const productsThunk = getProductList();
-    store.dispatch(productsThunk);
+    this.props.loadInitialData()
   }
 
   render () {
@@ -66,6 +58,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(getCartItems())
+      dispatch(getProductList())
     }
   }
 }
