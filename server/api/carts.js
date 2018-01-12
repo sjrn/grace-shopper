@@ -3,16 +3,16 @@ const router = require('express').Router()
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  // Product.findAll()
-  //   .then(products => res.json(products))
-  //   .catch(next)
+  // Retrieve an unauthenticated user's cart
   res.json(req.session.cart)
 })
 
 router.post('/', (req, res, next) => {
   try {
+    // Adding to an unauthenticated user's cart
     req.session.cart.push(req.body)
-    res.sendStatus(201)
+    console.log("req.session.cart after post:", req.session.cart)
+    res.status(201).json(req.body)
   } catch (error) {
     res.sendStatus(500)
   }
