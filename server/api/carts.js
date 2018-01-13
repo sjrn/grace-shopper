@@ -11,7 +11,7 @@ router.post('/', (req, res, next) => {
   try {
     // Adding to an unauthenticated user's cart
     req.session.cart.push(req.body)
-    console.log("req.session.cart after post:", req.session.cart)
+
     res.status(201).json(req.body)
   } catch (error) {
     res.sendStatus(500)
@@ -19,9 +19,27 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/:productId', (req, res, next) => {
-  const productId = Number(req.params.productId)
+  try {
+    // Determine which element to remove
+    const productId = Number(req.params.productId)
+    let itemIndex = req.session.cart.findIndex(item => item.productId === productId)
+    let deletedItem = req.session.cart.splice(itemIndex, 1)
+    console.log("Deleted items:", deletedItem)
+    res.status(200).json(deletedItem[0])
+  } catch (error) {
+    res.sendStatus(500)
+  }
+})
 
-  // Determine which element to remove
+router.put('/:productId', (req, res, next) => {
+  try {
+    const productId = Number(req.params.productId)
+    let itemIndex = req.session.cart.findIndex(item => item.productId === productId)
+    req.session.cart[itemIndex].quantity = req.body.quantity
+    res.status(200).json(req.session.cart[itemIndex])
+  } catch (error) {
+    res.sendStatus(500)
+  }
 })
 
 // router.get('/:id', (req, res, next) => {
