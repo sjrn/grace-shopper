@@ -50,7 +50,7 @@ export const Cart = (props) => {
 
   return props.cartItems && props.products && (
     <div>
-      <h2>You have {props.cartItems.length} in your cart</h2>
+      <h2>You have {props.cartItems.length} items in your cart</h2>
       <Table>
           <TableHeader>
             <TableRow>
@@ -71,8 +71,8 @@ export const Cart = (props) => {
                 </TableRowColumn>
                 <TableRowColumn>{product.price}</TableRowColumn>
                 <TableRowColumn>
-                  <SelectField value={product.quantity} onChange={() => {
-                    props.updateCartItemQuantity(product)
+                  <SelectField value={product.quantity} onChange={(event, index, value) => {
+                    props.updateCartItemQuantity(product, value)
                   }}>
                     {menuItemList}
                   </SelectField>
@@ -106,10 +106,10 @@ const mapDispatchToProps = (dispatch) => {
     deleteItemFromCart(itemId) {
       dispatch(deleteCartItem(itemId))
     },
-    updateCartItemQuantity(rowItem) {
+    updateCartItemQuantity(rowItem, value) {
       let item = {
         productId: rowItem.id,
-        quantity: rowItem.quantity
+        quantity: value
       }
 
       dispatch(updateCartItem(item))

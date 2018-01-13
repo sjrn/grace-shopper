@@ -15,6 +15,13 @@ import MenuItem from 'material-ui/MenuItem';
 import { getSelectedProduct } from '../store/selected-product';
 import { addCartItem, updateCartItem } from '../store/cart'
 
+//  Create list of menu items for quantity select field
+let menuItemList = [];
+
+for (let i = 1; i < 10; i++) {
+  menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
+}
+
 /**
  * COMPONENT
  */
@@ -90,14 +97,7 @@ class SingleProduct extends Component {
           value={this.state.quantity}
           onChange={this.handleQuantityChange}
         >
-          <MenuItem value={1} primaryText="1" />
-          <MenuItem value={2} primaryText="2" />
-          <MenuItem value={3} primaryText="3" />
-          <MenuItem value={4} primaryText="4" />
-          <MenuItem value={5} primaryText="5" />
-          <MenuItem value={6} primaryText="6" />
-          <MenuItem value={2} primaryText="2" />
-          <MenuItem value={2} primaryText="2" />
+          {menuItemList}
         </SelectField>
         <Link to="/cart" >Go to Cart!</Link>
 	    </div>
