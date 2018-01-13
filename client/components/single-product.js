@@ -13,8 +13,14 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 import { getSelectedProduct } from '../store/selected-product';
-import { addCartItem } from '../store/cart'
-import store from '../store';
+import { addCartItem, updateCartItem } from '../store/cart'
+
+//  Create list of menu items for quantity select field
+let menuItemList = [];
+
+for (let i = 1; i < 10; i++) {
+  menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
+}
 
 /**
  * COMPONENT
@@ -24,7 +30,7 @@ class SingleProduct extends Component {
 	constructor(props) {
     super(props)
     this.state = {
-      quantity: 0
+      quantity: 1
     }
 	}
 
@@ -44,7 +50,16 @@ class SingleProduct extends Component {
       quantity: this.state.quantity
     }
 
-    this.props.addNewItemToCart(newCartItem)
+    // If item already exists in the cart, update
+    // the existing cart item by adding the selected
+    // quantity, otherwise create a new cart item
+    let itemIndex = this.props.cart.findIndex(item => item.productId === this.props.product.id)
+    if(itemIndex === -1) {
+      this.props.addNewItemToCart(newCartItem)
+    } else {
+      newCartItem.quantity += this.props.cart[itemIndex].quantity
+      this.props.updateItemInCart(newCartItem)
+    }
   }
 
   handleQuantityChange (event, index, value) {
@@ -53,6 +68,7 @@ class SingleProduct extends Component {
       quantity: Number(value)
     })
   }
+
 
 	render() {
 	  return this.props.product && (
@@ -78,23 +94,30 @@ class SingleProduct extends Component {
         <FlatButton id="add-to-cart-button" onClick={this.handleAddItem} label="Add To Cart" />
         <SelectField
           floatingLabelText="Quantity"
-          value={1}
+          value={this.state.quantity}
           onChange={this.handleQuantityChange}
         >
-          <MenuItem value={1} primaryText="1" />
-          <MenuItem value={2} primaryText="2" />
+          {menuItemList}
         </SelectField>
+        <Link to="/cart" >Go to Cart!</Link>
 	    </div>
 	  );
 	}
 }
+
+// function createQuanitityDropdown() {
+//   render() {
+//     retrun(<h1> </h1>)
+//   }
+// }
 
 /**
  * CONTAINER
  */
 const mapStateToProps = (state) => {
   return {
-    product: state.selectedProduct
+    product: state.selectedProduct,
+    cart: state.cart
   };
 };
 
@@ -105,6 +128,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addNewItemToCart(item) {
       dispatch(addCartItem(item))
+    },
+    updateItemInCart(item) {
+      dispatch(updateCartItem(item))
     }
 	};
 };
