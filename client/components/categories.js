@@ -5,12 +5,19 @@ import {connect} from 'react-redux';
 export const Categories = (props) => {
 
 
-    console.log('-------------------',props.categories)
+console.log('-------------------',props.categories)
   return props.categories&&(
+      
         <div className="category-container">
-            <ul>
-           
-            </ul>
+        
+               <ul>
+                {props.categories.map(category=>{
+                    return(
+                        <li key={category.id}>{category.name}</li>
+                    )
+                       
+                })}
+                </ul>
         </div>
     )
     }

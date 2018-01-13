@@ -67,6 +67,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me())
       dispatch(getCartItems())
       dispatch(getProductList())
+      dispatch(getCategoryList())
     }
   }
 }
