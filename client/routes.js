@@ -7,9 +7,7 @@ import {Main, Login, Signup, UserHome} from './components'
 import Products from './components/products';
 import Cart from './components/cart';
 import SingleProduct from './components/single-product';
-import {me} from './store'
 import store from './store';
-import { getProductList } from './store/products';
 import { getCategoryList } from './store/categories'
 
 import { me, getCartItems, getProductList} from './store'
