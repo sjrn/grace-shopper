@@ -26,6 +26,14 @@ class SingleProduct extends Component {
 		
 		this.props.loadSelectedProduct(productId);
 	}
+	componentWillReceiveProps(props) {
+		const productId = this.props.match.params.id;
+
+		if(props.match.params.id !== this.props.match.params.id){
+			console.log("********")
+			this.props.loadSelectedProduct(productId);
+		}
+	}
 
 	render() {
 	  return this.props.product && (

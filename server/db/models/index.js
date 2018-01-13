@@ -1,5 +1,9 @@
+'use strict';
+
+const db = require("../db")
 const User = require('./user')
 const Product = require('./product')
+const Category = require('./category');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -8,6 +12,8 @@ const Product = require('./product')
  *    BlogPost.belongsTo(User)
  */
 
+Product.belongsTo(Category)
+Category.hasMany(Product);
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -15,6 +21,8 @@ const Product = require('./product')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
+  db,
   User,
-  Product
+  Product,
+  Category
 }

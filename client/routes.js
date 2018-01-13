@@ -9,6 +9,8 @@ import SingleProduct from './components/single-product';
 import {me} from './store'
 import store from './store';
 import { getProductList } from './store/products';
+import { getCategoryList } from './store/categories'
+
 
 /**
  * COMPONENT
@@ -21,7 +23,9 @@ class Routes extends Component {
 
     // Fetch list of products
     const productsThunk = getProductList();
-    store.dispatch(productsThunk);
+    const categoriesThunk = getCategoryList();
+    store.dispatch(productsThunk, categoriesThunk );
+    // store.dispatch(categoriesThunk);
   }
 
   render () {
@@ -29,7 +33,7 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
-        <Main>
+        <Main >
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
@@ -43,7 +47,9 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Products component for default case */}
+           
             <Route component={Products} />
+           
           </Switch>
         </Main>
       </Router>

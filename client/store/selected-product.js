@@ -1,6 +1,7 @@
 // store/selected-product.js
 
 import axios from 'axios';
+import history from '../history';
 
 // Action types
 const GET_SELECTED_PRODUCT = 'GET_SELECTED_PRODUCT';
@@ -27,7 +28,7 @@ export function getSelectedProduct(productId) {
 }
 
 // Reducer
-export default function reducer(state = [], action) {
+export default function reducer(state = {}, action) {
   switch (action.type) {
     case GET_SELECTED_PRODUCT:
       return action.selectedProduct;
