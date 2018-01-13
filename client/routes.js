@@ -5,27 +5,21 @@ import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
 import Products from './components/products';
+import Cart from './components/cart';
 import SingleProduct from './components/single-product';
 import {me} from './store'
 import store from './store';
 import { getProductList } from './store/products';
 import { getCategoryList } from './store/categories'
 
+import { me, getCartItems, getProductList} from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount () {
-    //this.props.loadInitialData()
-
-    console.log("Fetching products");
-
-    // Fetch list of products
-    const productsThunk = getProductList();
-    const categoriesThunk = getCategoryList();
-    store.dispatch(productsThunk, categoriesThunk );
-    // store.dispatch(categoriesThunk);
+    this.props.loadInitialData()
   }
 
   render () {
@@ -39,6 +33,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/products/:id" component={SingleProduct} />
+            <Route path="/cart" component={Cart} />
             {
               isLoggedIn &&
                 <Switch>
@@ -72,6 +67,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(getCartItems())
+      dispatch(getProductList())
     }
   }
 }
