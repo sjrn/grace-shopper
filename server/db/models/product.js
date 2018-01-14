@@ -18,7 +18,6 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue: 'https://images-na.ssl-images-amazon.com/images/I/31uWq6b8eDL.jpg'
   }
-
 })
 
 module.exports = Product

@@ -6,6 +6,7 @@ import {logout} from '../store'
 import Products from './products';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
+import ShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart'
 
 /**
  * COMPONENT
@@ -22,8 +23,14 @@ const Main = (props) => {
       <AppBar
         title="Grace Shoppa"
         iconElementRight={
-          <RaisedButton label='TEMP'>
-          </RaisedButton>
+          <div>
+            <Link to='/cart'>
+              <RaisedButton 
+                icon={<ShoppingCartIcon />}
+                label='#'>
+              </RaisedButton>
+            </Link>
+          </div>
         }
       />
       <nav>
@@ -36,6 +43,7 @@ const Main = (props) => {
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
+              <Link to="/home">Home</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
             </div>
