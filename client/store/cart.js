@@ -87,6 +87,15 @@ export function deleteCartItem(productId, history) {
   }
 }
 
+export function checkoutCart(email, history) {
+  return function thunk(dispatch) {
+    return axios.post('/api/carts/checkout', email)
+      .then(res => res.data)
+      .then(() => console.log('Email was sent successfully'))
+      .catch(console.error)
+  }
+}
+
 // Reducer
 export default function reducer(state = [], action) {
   //const itemIndex = state.findIndex(item => item.productId === action.item.productId)
