@@ -27,7 +27,7 @@ const Main = (props) => {
             <Link to='/cart'>
               <RaisedButton 
                 icon={<ShoppingCartIcon />}
-                label='#'>
+                label={`(${props.cartAmount})`}>
               </RaisedButton>
             </Link>
           </div>
@@ -60,6 +60,7 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
+    cartAmount: state.cart.length,
     isLoggedIn: !!state.user.id
   }
 }
