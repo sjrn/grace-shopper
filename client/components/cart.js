@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import {
   Table,
   TableBody,
@@ -87,6 +88,9 @@ export const Cart = (props) => {
           }
           </TableBody>
         </Table>
+        <Link to="/checkout" >
+          <RaisedButton label="Checkout" primary={true} style={{margin: 12}} />
+        </Link>
     </div>
   )
 }
