@@ -86,8 +86,8 @@ class SingleProduct extends Component {
 			      {this.props.product.description}
 			    </CardText>
 			    <CardActions>
-			      <FlatButton label="Action1" />
-			      <FlatButton label="Action2" />
+			      <FlatButton label="Add Review" />
+			      <FlatButton label="View Reviews" />
 			    </CardActions>
 			  </Card>
         {/* TEMP: Button for adding new item */}
@@ -99,7 +99,6 @@ class SingleProduct extends Component {
         >
           {menuItemList}
         </SelectField>
-        <Link to="/cart" >Go to Cart!</Link>
 	    </div>
 	  );
 	}

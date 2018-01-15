@@ -6,6 +6,7 @@ import {logout} from '../store'
 import Products from './products';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
+import ShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart'
 import SearchBar from './search-bar';
 import Categories from './categories';
 
@@ -21,7 +22,6 @@ const Main = (props) => {
   return (
 
     <div>
-       
       {/* TODO: Redirect to home page upon title click */}
       <AppBar
         title="Grace Shoppa"
@@ -30,13 +30,15 @@ const Main = (props) => {
             <SearchBar></SearchBar>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
-            {/* <RaisedButton label='TEMP'>
-            </RaisedButton> */}
+            <Link to='/cart'>
+              <RaisedButton 
+                icon={<ShoppingCartIcon />}
+                label={`(${props.cartAmount})`}>
+              </RaisedButton>
+            </Link>
           </div>
         }
       />
-      
-       
       
       <nav>
         {
@@ -66,6 +68,7 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
+    cartAmount: state.cart.length,
     isLoggedIn: !!state.user.id
   }
 }

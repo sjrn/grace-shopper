@@ -3,6 +3,7 @@
 const db = require("../db")
 const User = require('./user')
 const Product = require('./product')
+const Review = require('./review')
 const Category = require('./category');
 
 /**
@@ -11,6 +12,8 @@ const Category = require('./category');
  *
  *    BlogPost.belongsTo(User)
  */
+ Review.belongsTo(Product);
+ Review.belongsTo(User);
 
 Product.belongsTo(Category)
 Category.hasMany(Product);
@@ -24,5 +27,6 @@ module.exports = {
   db,
   User,
   Product,
+  Review,
   Category
 }

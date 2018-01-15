@@ -3,6 +3,7 @@ const { Product } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
+	console.log("got to products GET")
   Product.findAll()
     .then(products => res.json(products))
     .catch(next)

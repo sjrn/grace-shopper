@@ -7,7 +7,9 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import {Link} from 'react-router-dom'
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import AddShoppingCartIcon from 'material-ui/svg-icons/action/add-shopping-cart';
+
+import { addCartItem } from '../store'
 
 /**
  * COMPONENT
@@ -36,7 +38,7 @@ export const Products = (props) => {
             <Link key={product.id} to={`/products/${product.id}`}>
               <GridTile
                 title={product.name}
-                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
+                actionIcon={<AddShoppingCartIcon color='orange' onClick={() => console.log("supsup!")} />}>
                 <img src={product.imageUrl} />
               </GridTile>
             </Link>
