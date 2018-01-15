@@ -6,10 +6,12 @@ import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
 import Products from './components/products';
 import Cart from './components/cart';
+import Checkout from './components/checkout';
 import SingleProduct from './components/single-product';
 import store from './store';
 import { getCategoryList } from './store/categories'
 
+import Confirmation from './components/confirmation';
 import { me, getCartItems, getProductList} from './store'
 
 /**
@@ -32,6 +34,8 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/products/:id" component={SingleProduct} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/confirmation" component={Confirmation} />
             {
               isLoggedIn &&
                 <Switch>
