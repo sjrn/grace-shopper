@@ -8,12 +8,12 @@ import Products from './components/products';
 import Cart from './components/cart';
 import Checkout from './components/checkout';
 import SingleProduct from './components/single-product';
-import store from './store';
 import { getCategoryList } from './store/categories'
 
 import Confirmation from './components/confirmation';
-import { me, getCartItems, getProductList} from './store'
 import FilteredByCategory from './components/filtered-by-category';
+import { me, getCartItems, getProductList,
+  getReviewList} from './store'
 
 /**
  * COMPONENT
@@ -74,6 +74,7 @@ const mapDispatch = (dispatch) => {
       dispatch(getCartItems())
       dispatch(getProductList())
       dispatch(getCategoryList())
+      dispatch(getReviewList())
     }
   }
 }

@@ -6,6 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import products from './products';
 import cart from './cart';
+import reviews from './reviews'
 import selectedProduct from './selected-product';
 import searchedProduct from './searched-product';
 import categories from './categories';
@@ -13,6 +14,7 @@ import categories from './categories';
 const reducer = combineReducers({
 	user,
 	products,
+	reviews,
 	selectedProduct,
 	searchedProduct,
 	categories,
@@ -29,3 +31,4 @@ export default store
 export * from './user'
 export * from './cart'
 export * from './products'
+export * from './reviews'
