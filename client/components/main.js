@@ -28,14 +28,24 @@ const Main = (props) => {
         iconElementRight={
           <div className="header-right">
             <SearchBar></SearchBar>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-            <Link to='/cart'>
-              <RaisedButton 
-                icon={<ShoppingCartIcon />}
-                label={`(${props.cartAmount})`}>
-              </RaisedButton>
-            </Link>
+            <div className="navbar-buttons">
+              <Link to="/home">
+                <RaisedButton className="navbar-button" label="Home"></RaisedButton>
+              </Link>
+              <Link to="/login">
+                <RaisedButton className="navbar-button" label="Login"></RaisedButton>
+              </Link>
+              <Link to="/signup">
+                <RaisedButton className="navbar-button" label="Sign up"></RaisedButton>
+              </Link>
+              <Link to='/cart'>
+                <RaisedButton 
+                  className="navbar-button" 
+                  icon={<ShoppingCartIcon />}
+                  label={`(${props.cartAmount})`}>
+                </RaisedButton>
+              </Link>
+            </div>
           </div>
         }
       />
