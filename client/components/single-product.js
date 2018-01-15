@@ -14,6 +14,7 @@ import StarsIcon from 'material-ui/svg-icons/action/stars'
 
 import { getSelectedProduct } from '../store/selected-product';
 import { addCartItem, updateCartItem } from '../store/cart'
+import DisplayReviewsDialog from './reviews-dialog'
 
 //  Create list of menu items for quantity select field
 let menuItemList = [];
@@ -110,7 +111,7 @@ class SingleProduct extends Component {
 			    </CardText>
 			    <CardActions>
 			      <FlatButton label="Add Review" />
-			      <FlatButton label="View Reviews" />
+            <DisplayReviewsDialog />
 			    </CardActions>
 			  </Card>
         <div className="add-to-cart-container">
