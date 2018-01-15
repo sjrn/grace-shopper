@@ -28,7 +28,22 @@ form div {
 }
 
 .search-bar{
-  padding-right: 400px;
+  /* padding-right: 400px; */
+}
+
+.navbar-buttons {
+  border: 2px solid green;
+  display: flex;
+}
+
+.navbar-button {
+  border: 2px solid red;
+  margin: 12px;
+  font-size: 100%;
+}
+
+.delete-button {
+  color: salmon;
 }
 
 .main-section {
@@ -36,7 +51,16 @@ form div {
   display: flex;
 }
 
+.add-to-cart-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
+.product-container {
+  display: flex;
+  align-items: space-between;
+}
 
 .category-container{
   width:20%;
