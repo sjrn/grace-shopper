@@ -7,6 +7,8 @@ import Products from './products';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import ShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart'
+import SearchBar from './search-bar';
+import Categories from './categories';
 
 /**
  * COMPONENT
@@ -18,12 +20,17 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
   return (
+
     <div>
+       
       {/* TODO: Redirect to home page upon title click */}
       <AppBar
         title="Grace Shoppa"
         iconElementRight={
-          <div>
+          <div className="header-right">
+            <SearchBar></SearchBar>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
             <Link to='/cart'>
               <RaisedButton 
                 icon={<ShoppingCartIcon />}
@@ -33,6 +40,9 @@ const Main = (props) => {
           </div>
         }
       />
+      
+       
+      
       <nav>
         {
           isLoggedIn
@@ -43,14 +53,15 @@ const Main = (props) => {
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
-              <Link to="/home">Home</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+             
             </div>
         }
       </nav>
       <hr />
-      {children}
+      <div className = "main-section">
+        <Categories/>
+        {children}
+      </div>  
     </div>
   )
 }

@@ -8,6 +8,9 @@ import Products from './components/products';
 import Cart from './components/cart';
 import Checkout from './components/checkout';
 import SingleProduct from './components/single-product';
+import store from './store';
+import { getCategoryList } from './store/categories'
+
 import Confirmation from './components/confirmation';
 import { me, getCartItems, getProductList} from './store'
 
@@ -24,7 +27,7 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
-        <Main>
+        <Main >
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
@@ -41,7 +44,9 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Products component for default case */}
+           
             <Route component={Products} />
+           
           </Switch>
         </Main>
       </Router>
@@ -66,6 +71,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me())
       dispatch(getCartItems())
       dispatch(getProductList())
+      dispatch(getCategoryList())
     }
   }
 }

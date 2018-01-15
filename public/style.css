@@ -19,3 +19,26 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.header-right {
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  align-items: space-between;
+}
+
+.search-bar{
+  padding-right: 400px;
+}
+
+.main-section {
+  border:2px solid black;
+  display: flex;
+}
+
+
+
+.category-container{
+  width:20%;
+}
+

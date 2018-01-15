@@ -7,12 +7,16 @@ import user from './user'
 import products from './products';
 import cart from './cart';
 import selectedProduct from './selected-product';
+import searchedProduct from './searched-product';
+import categories from './categories';
 
 const reducer = combineReducers({
 	user,
 	products,
-  selectedProduct,
-  cart
+	selectedProduct,
+	searchedProduct,
+	categories,
+  	cart
 })
 
 const middleware = composeWithDevTools(applyMiddleware(
