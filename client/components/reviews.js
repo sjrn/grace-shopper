@@ -25,6 +25,10 @@ class ReviewsDialog extends Component {
 	handleClose() {
 		this.setState({visible: false})
 	}
+
+	render() {
+		
+	}
 }
 
 export const Reviews = (props) => {
