@@ -26,7 +26,7 @@ const Review = db.define('review', {
 		allowNull: false
 	},
 	body: {
-		type: Sequelize.STRING,
+		type: Sequelize.TEXT,
 		allowNull: false
 	}
 })

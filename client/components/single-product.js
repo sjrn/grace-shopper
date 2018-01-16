@@ -11,17 +11,10 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import StarsIcon from 'material-ui/svg-icons/action/stars'
 
-
 import { getSelectedProduct } from '../store/selected-product';
 import { addCartItem, updateCartItem } from '../store/cart'
 import DisplayReviewsDialog from './reviews-dialog'
-
-//  Create list of menu items for quantity select field
-let menuItemList = [];
-
-for (let i = 1; i < 10; i++) {
-  menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
-}
+import AddReviewDialog from './add-review-dialog'
 
 // Star icon JSX-styling
 const starStyle = {
@@ -31,6 +24,28 @@ const starStyle = {
   notVisible: {
     color: 'black'
   }
+}
+
+//  Create list of menu items for quantity select field
+let menuItemList = [];
+
+for (let i = 1; i < 10; i++) {
+  menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
+}
+
+// starRatingSelection
+function displayStarRating(rating) {
+  const rateVal = Number(rating)
+  let starIconList = [];
+
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rateVal)
+      starIconList.push(<StarsIcon key={i} style={starStyle.visible} />)
+    else
+      starIconList.push(<StarsIcon key={i} style={starStyle.notVisible} />)
+  }
+
+  return starIconList
 }
 
 /**
@@ -74,7 +89,6 @@ class SingleProduct extends Component {
   }
 
   handleQuantityChange (event, index, value) {
-    console.log('Selected quantity is now ', value)
     this.setState({
       quantity: Number(value)
     })
@@ -94,11 +108,7 @@ class SingleProduct extends Component {
 			      subtitle={
               <div>
                 {/* TODO: replace with showStars() */}
-                <StarsIcon style={starStyle.visible} />
-                <StarsIcon style={starStyle.visible} />
-                <StarsIcon style={starStyle.visible} />
-                <StarsIcon style={starStyle.notVisible} />
-                <StarsIcon style={starStyle.notVisible} />
+                {displayStarRating(2)}
               </div>
             }
 			    />
@@ -109,8 +119,8 @@ class SingleProduct extends Component {
 			    <CardText>
 			      {this.props.product.description}
 			    </CardText>
-			    <CardActions>
-			      <FlatButton label="Add Review" />
+			    <CardActions className="product-container">
+			      <AddReviewDialog product={this.props.product}/>
             <DisplayReviewsDialog />
 			    </CardActions>
 			  </Card>
