@@ -10,8 +10,9 @@ const Product = db.define('product', {
     type: Sequelize.TEXT,
     allowNull: false
   },
+  // TODO: change to integer
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   imageUrl: {

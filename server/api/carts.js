@@ -26,8 +26,8 @@ router.delete('/:productId', (req, res, next) => {
     // Determine which element to remove
     const productId = Number(req.params.productId)
     let itemIndex = req.session.cart.findIndex(item => item.productId === productId)
+    // TODO: change to filter instead of splice
     let deletedItem = req.session.cart.splice(itemIndex, 1)
-    console.log("Deleted items:", deletedItem)
     res.status(200).json(deletedItem[0])
   } catch (error) {
     res.sendStatus(500)
