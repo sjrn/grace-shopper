@@ -16,3 +16,16 @@ router.get('/:id', (req, res, next) => {
 		.then(foundProduct => res.json(foundProduct))
 		.catch(next);
 });
+
+// router.get('/category/:id', (req,res,next)=>{
+// 	const categoryId = Number(req.params.id);
+
+// 	Product.findAll({
+// 		where:{
+// 			categoryId: categoryId
+// 		}
+// 	})
+// 	.then(products => res.json(products))
+//     .catch(next)
+// })
+
