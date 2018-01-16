@@ -11,13 +11,40 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     // allowNull: false
   },
+  firstName: {
+    type: Sequelize.STRING
+  },
+  middleName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  phoneNumber: {
+    type: Sequelize.STRING
+  },
   // Email will need to be captured for unauthenticated users.
   // For authenticated users, we can just get it from users table!
   email: {
     type: Sequelize.STRING,
     validate: {
-     isEmail: true
+      isEmail: true
     }
+  },
+  billingAddressOne: {
+    type: Sequelize.STRING
+  },
+  billingAddressTwo: {
+    type: Sequelize.STRING
+  },
+  city: {
+    type: Sequelize.STRING
+  },
+  state: {
+    type: Sequelize.STRING
+  },
+  zipCode: {
+    type: Sequelize.STRING
   },
   purchaseDate: {
     type: Sequelize.DATE,

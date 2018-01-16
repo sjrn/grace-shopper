@@ -5,9 +5,11 @@ import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
 import Products from './components/products';
+import Orders from './components/orders';
 import Cart from './components/cart';
 import Checkout from './components/checkout';
 import SingleProduct from './components/single-product';
+import SingleOrder from './components/single-order';
 import { getCategoryList } from './store/categories'
 
 import Confirmation from './components/confirmation';
@@ -35,9 +37,11 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/products/category/:id" component={FilteredByCategory} />
             <Route path="/products/:id" component={SingleProduct} />
+            <Route path="/orders/:id" component={SingleOrder} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/confirmation" component={Confirmation} />
+            <Route path="/orders" component={Orders} />
             {
               isLoggedIn &&
                 <Switch>
@@ -46,9 +50,9 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Products component for default case */}
-           
+
             <Route component={Products} />
-           
+
           </Switch>
         </Main>
       </Router>
