@@ -4,48 +4,25 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import FlatButton from 'material-ui/FlatButton'
+import Divider from 'material-ui/Divider';
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
 import StarsIcon from 'material-ui/svg-icons/action/stars'
 
-import { getSelectedProduct } from '../store/selected-product';
+import { getSelectedProduct } from '../store/selected-product'
 import { addCartItem, updateCartItem } from '../store/cart'
+import { displayStarRating } from '../utils'
 import DisplayReviewsDialog from './reviews-dialog'
 import AddReviewDialog from './add-review-dialog'
 
-// Star icon JSX-styling
-const starStyle = {
-  visible: {
-    color: 'gold'
-  },
-  notVisible: {
-    color: 'black'
-  }
-}
-
 //  Create list of menu items for quantity select field
-let menuItemList = [];
+let menuItemList = []
 
 for (let i = 1; i < 10; i++) {
-  menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
-}
-
-// starRatingSelection
-function displayStarRating(rating) {
-  const rateVal = Number(rating)
-  let starIconList = [];
-
-  for (let i = 1; i <= 5; i++) {
-    if (i <= rateVal)
-      starIconList.push(<StarsIcon key={i} style={starStyle.visible} />)
-    else
-      starIconList.push(<StarsIcon key={i} style={starStyle.notVisible} />)
-  }
-
-  return starIconList
+  menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />)
 }
 
 /**
@@ -61,16 +38,15 @@ class SingleProduct extends Component {
 	}
 
 	componentDidMount() {
-		const productId = this.props.match.params.id;
+		const productId = this.props.match.params.id
 
-    this.props.loadSelectedProduct(productId);
+    this.props.loadSelectedProduct(productId)
 
     this.handleAddItem = this.handleAddItem.bind(this)
-    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this)
   }
 
   handleAddItem (event) {
-
     let newCartItem = {
       productId: this.props.product.id,
       quantity: this.state.quantity
@@ -94,34 +70,44 @@ class SingleProduct extends Component {
     })
   }
 
-  // TO-DO: render amount of stars according to product's avg rating
-  showStars () {
-
-  }
-
 	render() {
+
+    const productReviews = this.props.reviews.filter(review =>
+      review.productId === this.props.product.id)
+    const productAvgRating = productReviews.length > 0 ?
+    Math.floor((productReviews.reduce((sum, review) => {
+        return sum + review.rating
+        }, 0)) / productReviews.length)
+      : 0
+
 	  return this.props.product && (
 	    <div className="product-container">
 	    	<Card>
-			    <CardHeader
-			      title={this.props.product.name}
-			      subtitle={
-              <div>
-                {/* TODO: replace with showStars() */}
-                {displayStarRating(2)}
-              </div>
-            }
-			    />
+          <CardTitle title={this.props.product.name} subtitle={this.props.category && this.props.category.name} />
 			    <CardMedia>
 			      <img src={this.props.product.imageUrl} />
 			    </CardMedia>
-			    <CardTitle title={this.props.product.name} subtitle="PLACEHOLDER" />
-			    <CardText>
+          <CardHeader
+            style={{fontWeight: 'bold'}}
+			      subtitle={
+              <div>
+                <h2>{`Price: $${this.props.product.price}`}</h2>
+                <Divider /><br/>
+                <div className="rating-container">
+                  {displayStarRating(productAvgRating)}
+                  {`  (Avg. rating: ${productAvgRating})`}
+                </div>
+              </div>
+            }
+			    />
+          <CardText>
 			      {this.props.product.description}
 			    </CardText>
 			    <CardActions className="product-container">
-			      <AddReviewDialog product={this.props.product}/>
-            <DisplayReviewsDialog />
+            <div className="rating-container">
+              <AddReviewDialog product={this.props.product} />
+              <DisplayReviewsDialog />
+            </div>
 			    </CardActions>
 			  </Card>
         <div className="add-to-cart-container">
@@ -146,7 +132,8 @@ const mapStateToProps = (state) => {
   return {
     product: state.selectedProduct,
     cart: state.cart,
-    reviews: state.reviews
+    reviews: state.reviews,
+    category: state.categories.find(category => category.id === state.selectedProduct.categoryId)
   };
 };
 

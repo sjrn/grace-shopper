@@ -32,9 +32,7 @@ for (let i = 1; i < 10; i++) {
  */
 export const Cart = (props) => {
   let items = []
-  if(props.cartItems && props.products){
-    console.log("cartItems:", props.cartItems)
-
+  if (props.cartItems && props.products){
     props.cartItems.forEach((cartItem) => {
       let foundProd = props.products.find(prod => prod.id === cartItem.productId)
 

@@ -12,8 +12,10 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-	let newReview = req.body;
+	let newReview = req.body
 
   // Add a new review
-  res.send("HELLOOOO")
+  Review.create(newReview)
+    .then(createdReview => res.json(createdReview))
+    .catch(next)
 })

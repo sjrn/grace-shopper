@@ -21,33 +21,76 @@ form div {
 }
 
 .header-right {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   align-items: center;
   align-items: space-between;
 }
 
-.search-bar{
-  /* padding-right: 400px; */
+.header-right{
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+}
+
+.navbar-search{
+
 } 
 
 .navbar-buttons {
-  border: 2px solid green;
   display: flex;
+  /* border: 2px solid green; */
 }
 
 .navbar-button {
-  border: 2px solid red;
-  margin: 12px;
-  font-size: 100%;
+
+  /* border: 2px solid red; */
+  /* display: inline; */
+  font-size:12px;
+  color: white;
+  margin: 10px;
+  border-radius: 4px;
+
 }
+.navbar-button:hover{
+  color:grey
+}
+
 
 .delete-button {
   color: salmon;
 }
 
+#search-form{
+  display: flex;
+
+}
+
+#input-feild{
+    margin-top: 2%;
+    width: 250px;
+    height: 30px;
+    margin-right:5%; 
+    border-radius: 4px;
+    background-color: white;
+
+}
+
+.drum-size{
+  font-size: 35px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+/* #input-feild:focus {
+  border: 1px solid red;
+} */
+#input-feild[type='text']:focus{
+  background-color: white;
+}
+
 .main-section {
-  border:2px solid black;
+  /* border:2px solid black; */
   display: flex;
 }
 
@@ -57,24 +100,82 @@ form div {
   flex-direction: column;
 }
 
+.rating-slider-container {
+  display: flex;
+  align-items: space-between;
+  flex-direction: column;
+  width: 50%;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  align-items: space-between;
+  flex-direction: row;
+}
+
 .product-container {
   display: flex;
   align-items: space-between;
 }
 
+/*---------- CATEGORIES ----------*/
+
 .category-container{
-  width:20%;
+  border-right:2px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width:150px;
+  height: 80vh;
+  background-color:white;
+  margin-right:15px;
+  color:black;
+
+}
+
+.category-container ul {
+  /* border: 2px solid red; */
+  list-style: none;
+  text-align: left;
+  padding-left: 3px;
+  overflow: hidden;
+  color: black;
+
+  }
+
+.category-container h3{
+ padding-left:5px;
+}
+
+.category-container ul li {
+  padding:5px;
+  color: black;
+}
+
+li a:visited{
+  color: inherit;
+}
+
+/*------- FILTERED-BY-CATEGORY---------*/
+
+.filtered-products-holder{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .category-filter{
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
- 
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  color:black;
+
 }
 
 .category-filter img{
-  width: 500;
-  height:450;
+  height:180px;
 }
-
