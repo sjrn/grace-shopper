@@ -5,14 +5,14 @@ const nodemailer = require('nodemailer')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Order.findAll() // TO-DO: We'll need prod info also (eager loading)?
+  Order.findAll({ include: [{ all: true, nested: true }] })
     .then(orders => res.json(orders))
     .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
   const orderId = Number(req.params.id);
-  Order.findById(orderId) // TO-DO: We'll need prod info also (eager loading)?
+  Order.findById(orderId, { include: [{ all: true, nested: true }] })
     .then(foundOrder => res.json(foundOrder))
     .catch(next);
 });
@@ -22,7 +22,7 @@ router.get('/:email', (req, res, next) => {
   Order.findAll( // TO-DO: We'll need prod info also (eager loading)?
     { where: {
       email: email
-    }})
+    } })
     .then(orders => res.json(orders))
     .catch(next);
 })
@@ -95,7 +95,7 @@ function sendEmail(req, res, next) {
     // setup email data with unicode symbols
     let mailOptions = {
       from: req.body.from, // sender address
-      to: req.body.to, // list of receivers
+      to: req.body.email, // list of receivers
       subject: req.body.subject, // Subject line
       text: req.body.text, // plain text body
       html: req.body.html // html body
@@ -114,6 +114,7 @@ function sendEmail(req, res, next) {
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
+      transporter.close()
       res.sendStatus(200)
 
     });

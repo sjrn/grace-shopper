@@ -30,7 +30,7 @@ export function checkoutCart(email, history) {
   return function thunk(dispatch) {
     return axios.post('/api/orders', email)
       .then(res => res.data)
-      .then(() => console.log('Email was sent successfully'))
+      // .then(() => console.log('Email was sent successfully'))
       .catch(console.error)
   }
 }
