@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import history from '../history';
 import {browserHistory } from 'react-router';
-import { getSearchedProduct } from '../store/searched-product';
 import { getProductList } from '../store/products';
 import { getSelectedProduct } from '../store/selected-product';
 import SearchIcon from 'material-ui/svg-icons/action/search'
