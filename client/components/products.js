@@ -11,7 +11,6 @@ import AddShoppingCartIcon from 'material-ui/svg-icons/action/add-shopping-cart'
 import { addCartItem, updateCartItem } from '../store/cart'
 import history from '../history';
 
-
 const styles = {
   root: {
     display: 'flex', 
@@ -29,7 +28,7 @@ const styles = {
 /**
  * COMPONENT
  */
-// export const Products = (props) => {
+
 class Products extends Component {  
   constructor(props) {
     super(props)
@@ -56,7 +55,6 @@ class Products extends Component {
   }
 
 render(){
-  console.log("this.props",this.props)
   return this.props.products && (
     <div>
       <GridList cellHeight={180} style={styles.gridList}>
@@ -67,7 +65,6 @@ render(){
               <GridTile
                 title={product.name}
                 actionIcon={
-                // <Link to="/cart">
                 <AddShoppingCartIcon color='orange' 
                     onClick=
                     {() => this.handleAddItem(product.id)}

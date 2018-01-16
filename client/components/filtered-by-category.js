@@ -62,24 +62,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(FilteredByCategory)
-  /* <GridList cellHeight={180} style={styles.gridList}>
-        <Subheader>Product List</Subheader>
-        {
-              props.products.map((product)=>{
-                const categoryId = Number(props.match.params.id);
-
-                  if(product.categoryId === categoryId){
-                    return 
-                        <GridTile
-                title={product.name}
-                actionIcon={<AddShoppingCartIcon color='orange' onClick={() => console.log("supsup!")} />}>
-                <img src={product.imageUrl} />
-              </GridTile>
-
-                        // <div>{product.name}</div>
-                    
-                  }
-              })
-          }
-         
-      </GridList> */
