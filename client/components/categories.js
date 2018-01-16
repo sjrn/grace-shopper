@@ -6,7 +6,7 @@ export const Categories = (props) => {
   return props.categories&&(
       
         <div className="category-container">
-        
+              <h3>Categories</h3>
                <ul>
                 {props.categories.map(category=>{
                     return(

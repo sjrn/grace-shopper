@@ -18,9 +18,8 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    col: 4,
-    width: 500,
-    height: 450,
+    width: "85vw",
+    // height: 550,
     overflowY: 'auto',
    
   },
@@ -57,7 +56,7 @@ class Products extends Component {
 render(){
   return this.props.products && (
     <div>
-      <GridList cellHeight={180} style={styles.gridList}>
+      <GridList cellHeight={180} style={styles.gridList} cols={3}>
         <Subheader>Product List</Subheader>
           {
             this.props.products.map((product) => (
