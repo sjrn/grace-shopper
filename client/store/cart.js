@@ -89,22 +89,12 @@ export function deleteCartItem(productId, history) {
     return axios.delete(`/api/carts/${productId}`)
       .then(res => res.data)
       .then(deletedItem => {
-        console.log("Deleted item:", deletedItem)
         const action = deleteCartItemAction(deletedItem)
         dispatch(action)
       })
       .catch(console.error)
   }
 }
-
-// export function checkoutCart(email, history) {
-//   return function thunk(dispatch) {
-//     return axios.post('/api/carts/checkout', email)
-//       .then(res => res.data)
-//       .then(() => console.log('Email was sent successfully'))
-//       .catch(console.error)
-//   }
-// }
 
 // Reducer
 export default function reducer(state = [], action) {
@@ -122,7 +112,6 @@ export default function reducer(state = [], action) {
     case UPDATE_CART_ITEM:
       newState = [...state]
       newState[findItemIndex(state, action.item.productId)].quantity = action.item.quantity
-      console.log("updated cart before return:", newState)
       return newState
     case DELETE_CART_ITEM:
       return state.filter((item) => {

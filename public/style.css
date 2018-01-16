@@ -57,6 +57,20 @@ form div {
   flex-direction: column;
 }
 
+.rating-slider-container {
+  display: flex;
+  align-items: space-between;
+  flex-direction: column;
+  width: 50%;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  align-items: space-between;
+  flex-direction: row;
+}
+
 .product-container {
   display: flex;
   align-items: space-between;
