@@ -55,6 +55,7 @@ class ReviewsDialog extends Component {
 					onRequestClose={this.handleClose}
 					>
 					<List>
+					<Divider />
 					{
 						reviews.map(review => (
 							<div key={review.id}>

@@ -26,7 +26,6 @@ class Checkout extends Component {
   }
 
   handleEmailChange(event) {
-    console.log("Current email addr on local state:", event.target.value)
     this.setState({emailAddr: event.target.value})
   }
 

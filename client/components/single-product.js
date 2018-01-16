@@ -80,9 +80,6 @@ class SingleProduct extends Component {
         }, 0)) / productReviews.length)
       : 0
 
-    console.log('productReviews:', productReviews)
-    console.log('productAvgRating:', productAvgRating)
-
 	  return this.props.product && (
 	    <div className="product-container">
 	    	<Card>
