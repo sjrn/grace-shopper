@@ -18,9 +18,6 @@ import title from 'material-ui/svg-icons/editor/title';
  *  rendered out by the component's `children`.
  */
 
-
-
-
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
@@ -42,13 +39,6 @@ const Main = (props) => {
           <div className="header-right">
             <div className='navbar-search'><SearchBar></SearchBar></div>
             <div className="navbar-buttons">
-              {/* <Link to="/home">
-                <button   
-                  labelStyle={{ fontSize: '10px'}} 
-                  className="navbar-button" 
-                  label="Home"
-                  ></button> 
-              </Link> */}
               <Link to="/login">
                 <RaisedButton 
                   labelStyle={{ fontSize: '12px'}} 
@@ -75,19 +65,6 @@ const Main = (props) => {
           </div>
         }
       />
-      {/* <div className='header'>
-      <div><Link className='logo' to="/home">Grace Shoppa  🛒</Link></div>
-      <div className="header-right">
-            <SearchBar></SearchBar>
-            <div className="navbar-buttons">
-              <Link className='navbar-button' to="/login">Login</Link>
-              <Link className='navbar-button' to="/signup">Sign up</Link>
-              <Link className='navbar-button' to='/cart'>
-                  <ShoppingCartIcon />{`(${props.cartAmount})`}
-              </Link>
-            </div>
-          </div>
-      </div> */}
       
       <nav>
         {

@@ -13,13 +13,11 @@ import {browserHistory } from 'react-router';
 
 import { addCartItem } from '../store'
 
-
-
 /**
  * COMPONENT
  */
 export const FilteredByCategory = (props) => {
-  const categoryId = Number(props.match.params.id); 
+const categoryId = Number(props.match.params.id);
 const styles = {
   root: {
     display: 'flex',
@@ -33,31 +31,18 @@ const styles = {
   },
 };
 
-//   if(categoryId !== 1){
-//     return props.products &&(
-//       <div>AHAHAHAHA</div>
-//     )
-//   }
-// else{
-  return props.products && (
-    <div>
+return props.products && (
+    <div className="filtered-products-holder">
       
         {
               props.products.map((product)=>{
 
                   if(product.categoryId === categoryId){
                     return (
-                    //   <GridTile
-                    //   title={product.name}
-                    //   actionIcon={<AddShoppingCartIcon color='orange' onClick={() => console.log("supsup!")} />}>
-                    //   <img src={product.imageUrl} />
-                    // </GridTile>
-                      
-                        <div className ="category-filter">
-                          {product.name}
-                          <img src ={product.imageUrl}/>
-                        </div>
-                        
+                     <Link key={product.id} to={`/products/${product.id}`}> <div className ="category-filter">
+                      {product.name}
+                      <img src ={product.imageUrl}/>
+                      </div></Link>               
                     )
                   }
               })
@@ -77,24 +62,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(FilteredByCategory)
-  /* <GridList cellHeight={180} style={styles.gridList}>
-        <Subheader>Product List</Subheader>
-        {
-              props.products.map((product)=>{
-                const categoryId = Number(props.match.params.id);
-
-                  if(product.categoryId === categoryId){
-                    return 
-                        <GridTile
-                title={product.name}
-                actionIcon={<AddShoppingCartIcon color='orange' onClick={() => console.log("supsup!")} />}>
-                <img src={product.imageUrl} />
-              </GridTile>
-
-                        // <div>{product.name}</div>
-                    
-                  }
-              })
-          }
-         
-      </GridList> */

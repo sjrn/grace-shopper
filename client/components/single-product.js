@@ -83,11 +83,16 @@ class SingleProduct extends Component {
 	  return this.props.product && (
 	    <div className="product-container">
 	    	<Card>
-			    <CardHeader
-			      title={this.props.product.name}
+          <CardTitle title={this.props.product.name} subtitle={this.props.category && this.props.category.name} />
+			    <CardMedia>
+			      <img src={this.props.product.imageUrl} />
+			    </CardMedia>
+          <CardHeader
+            style={{fontWeight: 'bold'}}
 			      subtitle={
               <div>
-                <br/><Divider /><br/>
+                <h2>{`Price: $${this.props.product.price}`}</h2>
+                <Divider /><br/>
                 <div className="rating-container">
                   {displayStarRating(productAvgRating)}
                   {`  (Avg. rating: ${productAvgRating})`}
@@ -95,11 +100,7 @@ class SingleProduct extends Component {
               </div>
             }
 			    />
-			    <CardMedia>
-			      <img src={this.props.product.imageUrl} />
-			    </CardMedia>
-			    <CardTitle title={this.props.product.name} subtitle="PLACEHOLDER" />
-			    <CardText>
+          <CardText>
 			      {this.props.product.description}
 			    </CardText>
 			    <CardActions className="product-container">
@@ -131,7 +132,8 @@ const mapStateToProps = (state) => {
   return {
     product: state.selectedProduct,
     cart: state.cart,
-    reviews: state.reviews
+    reviews: state.reviews,
+    category: state.categories.find(category => category.id === state.selectedProduct.categoryId)
   };
 };
 

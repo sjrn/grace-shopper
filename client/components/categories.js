@@ -6,7 +6,7 @@ export const Categories = (props) => {
   return props.categories&&(
       
         <div className="category-container">
-        
+              <h3>Categories</h3>
                <ul>
                 {props.categories.map(category=>{
                     return(
@@ -14,10 +14,10 @@ export const Categories = (props) => {
                         <li key={category.id}>{category.name}</li>
                       </Link>
                     )
-                       
                 })}
+                <Link to={"/products"}><li>All Products</li></Link>
                 </ul>
-                <Link to={"/products"}>All Products</Link>
+                
 
         </div>
     )
@@ -29,6 +29,5 @@ const mapStateToProps = (state) => {
     }
   }
 
-
   
-  export default connect(mapStateToProps)(Categories)
+export default connect(mapStateToProps)(Categories)
