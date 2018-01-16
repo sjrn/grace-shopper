@@ -1,11 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux';
-
+import {Link} from 'react-router-dom';
 
 export const Categories = (props) => {
-
-
-console.log('-------------------',props.categories)
   return props.categories&&(
       
         <div className="category-container">
@@ -13,11 +10,16 @@ console.log('-------------------',props.categories)
                <ul>
                 {props.categories.map(category=>{
                     return(
+                      // console.log('category.id:', category.id)
+                      <Link key={category.id} to={`/products/category/${category.id}`}> 
                         <li key={category.id}>{category.name}</li>
+                      </Link>
                     )
                        
                 })}
                 </ul>
+                <Link to={"/products"}>All Products</Link>
+
         </div>
     )
     }
@@ -27,12 +29,6 @@ const mapStateToProps = (state) => {
       categories: state.categories
     }
   }
-
-//   const mapDispatchToProps = () =>{
-//     return {
-
-//     }
-//   }
 
 
   

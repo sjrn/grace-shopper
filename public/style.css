@@ -29,7 +29,7 @@ form div {
 
 .search-bar{
   /* padding-right: 400px; */
-}
+} 
 
 .navbar-buttons {
   border: 2px solid green;
@@ -64,5 +64,17 @@ form div {
 
 .category-container{
   width:20%;
+}
+
+.category-filter{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ 
+}
+
+.category-filter img{
+  width: 500;
+  height:450;
 }
 

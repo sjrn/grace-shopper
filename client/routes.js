@@ -11,6 +11,7 @@ import SingleProduct from './components/single-product';
 import { getCategoryList } from './store/categories'
 
 import Confirmation from './components/confirmation';
+import FilteredByCategory from './components/filtered-by-category';
 import { me, getCartItems, getProductList,
   getReviewList} from './store'
 
@@ -32,6 +33,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/products/category/:id" component={FilteredByCategory} />
             <Route path="/products/:id" component={SingleProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
