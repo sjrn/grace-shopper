@@ -5,21 +5,32 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
-import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import StarsIcon from 'material-ui/svg-icons/action/stars'
+
 
 import { getSelectedProduct } from '../store/selected-product';
 import { addCartItem, updateCartItem } from '../store/cart'
+import DisplayReviewsDialog from './reviews-dialog'
 
 //  Create list of menu items for quantity select field
 let menuItemList = [];
 
 for (let i = 1; i < 10; i++) {
   menuItemList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
+}
+
+// Star icon JSX-styling
+const starStyle = {
+  visible: {
+    color: 'gold'
+  },
+  notVisible: {
+    color: 'black'
+  }
 }
 
 /**
@@ -69,14 +80,27 @@ class SingleProduct extends Component {
     })
   }
 
+  // TO-DO: render amount of stars according to product's avg rating
+  showStars () {
+
+  }
 
 	render() {
 	  return this.props.product && (
-	    <div>
+	    <div className="product-container">
 	    	<Card>
 			    <CardHeader
 			      title={this.props.product.name}
-			      subtitle="PLACEHOLDER CATEGORY AND RATING"
+			      subtitle={
+              <div>
+                {/* TODO: replace with showStars() */}
+                <StarsIcon style={starStyle.visible} />
+                <StarsIcon style={starStyle.visible} />
+                <StarsIcon style={starStyle.visible} />
+                <StarsIcon style={starStyle.notVisible} />
+                <StarsIcon style={starStyle.notVisible} />
+              </div>
+            }
 			    />
 			    <CardMedia>
 			      <img src={this.props.product.imageUrl} />
@@ -87,28 +111,23 @@ class SingleProduct extends Component {
 			    </CardText>
 			    <CardActions>
 			      <FlatButton label="Add Review" />
-			      <FlatButton label="View Reviews" />
+            <DisplayReviewsDialog />
 			    </CardActions>
 			  </Card>
-        {/* TEMP: Button for adding new item */}
-        <FlatButton id="add-to-cart-button" onClick={this.handleAddItem} label="Add To Cart" />
-        <SelectField
-          floatingLabelText="Quantity"
-          value={this.state.quantity}
-          onChange={this.handleQuantityChange}
-        >
-          {menuItemList}
-        </SelectField>
+        <div className="add-to-cart-container">
+          <SelectField
+            floatingLabelText="Quantity"
+            value={this.state.quantity}
+            onChange={this.handleQuantityChange}
+          >
+            {menuItemList}
+          </SelectField>
+          <RaisedButton id="add-to-cart-button" onClick={this.handleAddItem} label="Add To Cart" />
+        </div>
 	    </div>
 	  );
 	}
 }
-
-// function createQuanitityDropdown() {
-//   render() {
-//     retrun(<h1> </h1>)
-//   }
-// }
 
 /**
  * CONTAINER
@@ -116,7 +135,8 @@ class SingleProduct extends Component {
 const mapStateToProps = (state) => {
   return {
     product: state.selectedProduct,
-    cart: state.cart
+    cart: state.cart,
+    reviews: state.reviews
   };
 };
 

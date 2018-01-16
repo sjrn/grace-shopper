@@ -79,7 +79,7 @@ export const Cart = (props) => {
                   </SelectField>
                 </TableRowColumn>
                 <TableRowColumn>
-                  <RaisedButton label='X' onClick={() => {
+                  <RaisedButton backgroundColor="salmon" label='X' onClick={() => {
                     props.deleteItemFromCart(product.id)
                   }} />
                 </TableRowColumn>
