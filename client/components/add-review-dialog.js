@@ -3,12 +3,17 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog'
+import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider'
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton'
 import {Link} from 'react-router-dom'
+import Slider from 'material-ui/Slider';
 import StarsIcon from 'material-ui/svg-icons/action/stars'
 import TextField from 'material-ui/TextField'
+
+import { addReview } from '../store'
+import { displayStarRating } from '../utils'
 
 // Star icon JSX-styling
 // TODO: put in a utils file
@@ -19,21 +24,6 @@ const starStyle = {
   notVisible: {
     color: 'black'
   }
-}
-
-// starRatingSelection
-function displayStarRating(rating) {
-  const rateVal = Number(rating)
-  let starIconList = [];
-
-  for (let i = 1; i <= 5; i++) {
-    if (i <= rateVal)
-      starIconList.push(<StarsIcon id={`add-star-${i}`} key={i} style={starStyle.visible} />)
-    else
-      starIconList.push(<StarsIcon id={`add-star-${i}`} key={i} style={starStyle.notVisible} />)
-  }
-
-  return starIconList
 }
 
 /**
@@ -51,7 +41,7 @@ class AddReviewDialog extends Component {
 		this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleStarMouseOver = this.handleStarMouseOver.bind(this)
+    this.handleSliderChange = this.handleSliderChange.bind(this)
 	}
 
 	handleOpen() {
@@ -61,15 +51,25 @@ class AddReviewDialog extends Component {
 		this.setState({visible: false})
   }
   
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault()
+
     // Create new review
 
+    let newReview = {
+      email: event.target.emailAddrField.value,
+      rating: Number(this.state.starRating),
+      title: event.target.reviewTitleField.value,
+      body: event.target.reviewBodyField.value,
+      productId: this.props.product.id
+    }
+
+    this.props.addNewReview(newReview)
   }
 
-  handleStarMouseOver(event) {
-    // Update rating based on user's selected star
-    const rating = Number(event.target.id.split('add-star-')[1])
-    displayStarRating(rating)
+  handleSliderChange(event, value) {
+    // Update rating based on user's slider selection
+    const rating = Number(value)
 
     this.setState({starRating: rating})
   }
@@ -77,7 +77,6 @@ class AddReviewDialog extends Component {
 	render() {
 
 		const actions = [
-      <RaisedButton label="Add Review" onClick={this.handleClose}/>,
 			<RaisedButton label="Close" onClick={this.handleClose}/>
     ]
     
@@ -91,26 +90,33 @@ class AddReviewDialog extends Component {
 					open={this.state.visible}
 					onRequestClose={this.handleClose}
 				>
-          <div id='star-rating' onMouseOver={this.handleStarMouseOver}>
-            {displayStarRating(3)}
+          <div id='star-rating' className='rating-slider-container'>
+            How many stars will you give {this.props.product.name}?
+            <Slider step={1} min={0} max={5} value={0} 
+              onChange={this.handleSliderChange}/>
+            Selected rating - {this.state.starRating}
           </div>
-          <br />
-          <TextField
-            id="emailAddrField"
-            floatingLabelText="Email Address"
-            rows={1}
-          /><br />
-          <TextField
-            id="reviewTitleField"
-            floatingLabelText="Review Title"
-            rows={1}
-          /><br />
-          <TextField
-            id="reviewBodyField"
-            floatingLabelText="Review Body"
-            multiLine={true}
-            rows={2}
-          /><br />
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              name="emailAddrField"
+              floatingLabelText="Email Address"
+              rows={1}
+            />
+            <TextField
+              name="reviewTitleField"
+              floatingLabelText="Review Title"
+              rows={1}
+            />
+            <TextField
+              name="reviewBodyField"
+              floatingLabelText="Review Body"
+              multiLine={true}
+              rows={2}
+            />
+            <button type="submit" onClick={this.handleClose}>
+              Add Review
+            </button>
+          </form>
         </Dialog>
       </div>
     )
@@ -126,4 +132,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AddReviewDialog)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewReview(review) {
+      dispatch(addReview(review))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewDialog)

@@ -10,6 +10,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router-dom'
 import StarsIcon from 'material-ui/svg-icons/action/stars'
 
+import { displayStarRating } from '../utils'
+
 /**
  * COMPONENT
  */
@@ -55,12 +57,21 @@ class ReviewsDialog extends Component {
 					<List>
 					{
 						reviews.map(review => (
-							<ListItem 
-								key={review.id}
-								primaryText={review.title + " by " + review.email}
-								secondaryText={review.body}
-								secondaryTextLines={2}
-							/>
+							<div key={review.id}>
+								<ListItem 
+									primaryText={
+										<div>
+											{review.title + " by " + review.email}
+											<br /><br />
+											{displayStarRating(review.rating)}
+											<br /><br />
+										</div>
+									}
+									secondaryText={review.body}
+									secondaryTextLines={2}
+								/>
+								<Divider />
+							</div>
 						))
 					}
 					</List>
