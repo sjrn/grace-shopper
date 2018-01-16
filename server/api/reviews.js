@@ -14,8 +14,6 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
 	let newReview = req.body;
 
-	console.log('post request newReview:', newReview);
-
   // Add a new review
   res.send("HELLOOOO")
 })

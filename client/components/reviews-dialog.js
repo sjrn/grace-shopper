@@ -3,10 +3,12 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog';
-import {GridList, GridTile} from 'material-ui/GridList';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router-dom'
+import StarsIcon from 'material-ui/svg-icons/action/stars'
 
 /**
  * COMPONENT
@@ -40,8 +42,6 @@ class ReviewsDialog extends Component {
 		const reviews = this.props.reviews.filter(review =>
 			review.productId === this.props.product.id)
 
-		console.log("ReviewsDialog reviews in render:", reviews);
-
 		return this.props.reviews && this.props.product && (
 			<div>
 				<FlatButton label="View Reviews" onClick={this.handleOpen} />
@@ -52,6 +52,18 @@ class ReviewsDialog extends Component {
 					open={this.state.visible}
 					onRequestClose={this.handleClose}
 					>
+					<List>
+					{
+						reviews.map(review => (
+							<ListItem 
+								key={review.id}
+								primaryText={review.title + " by " + review.email}
+								secondaryText={review.body}
+								secondaryTextLines={2}
+							/>
+						))
+					}
+					</List>
 				</Dialog>
 			</div>
 		)
