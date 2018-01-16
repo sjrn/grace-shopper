@@ -5,7 +5,8 @@ import history from '../history';
 import {browserHistory } from 'react-router';
 import { getSearchedProduct } from '../store/searched-product';
 import { getProductList } from '../store/products';
-import { getSelectedProduct } from '../store/selected-product'
+import { getSelectedProduct } from '../store/selected-product';
+import SearchIcon from 'material-ui/svg-icons/action/search'
 import products from './products';
 
 class SearchBar extends Component {
@@ -31,13 +32,14 @@ handleSubmit(evt){
 render(){
   return (
         <div className="search-bar">
-            <form onSubmit={this.handleSubmit}>
+            <form id="search-form" onSubmit={this.handleSubmit}>
                 <input
+                    id="input-feild"
                     name= "item"
-                    type="text"
+                    type='text'
                     placeholder="Enter A Product Name"
                 />
-               <button>go to the product page</button>
+               <button className="navbar-button" ><SearchIcon/></button>
                
             </form>
         </div>
