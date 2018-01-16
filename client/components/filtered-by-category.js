@@ -8,6 +8,8 @@ import {Link} from 'react-router-dom'
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import AddShoppingCartIcon from 'material-ui/svg-icons/action/add-shopping-cart';
+import history from '../history';
+import {browserHistory } from 'react-router';
 
 import { addCartItem } from '../store'
 
@@ -17,6 +19,7 @@ import { addCartItem } from '../store'
  * COMPONENT
  */
 export const FilteredByCategory = (props) => {
+  const categoryId = Number(props.match.params.id);
     console.log('==================', props)    
 const styles = {
   root: {
@@ -31,22 +34,51 @@ const styles = {
   },
 };
 
+//   if(categoryId !== 1){
+//     return props.products &&(
+//       <div>AHAHAHAHA</div>
+//     )
+//   }
+// else{
   return props.products && (
     <div>
+      
         {
               props.products.map((product)=>{
-                const categoryId = Number(props.match.params.id);
 
                   if(product.categoryId === categoryId){
                     return (
-
-                        <div>{product.name}</div>
+                    //   <GridTile
+                    //   title={product.name}
+                    //   actionIcon={<AddShoppingCartIcon color='orange' onClick={() => console.log("supsup!")} />}>
+                    //   <img src={product.imageUrl} />
+                    // </GridTile>
+                      
+                        <div className ="category-filter">
+                        {product.name}
+                        <img src ={product.imageUrl}/>
+                        </div>
+                        
                     )
                   }
               })
           }
     
-      {/* <GridList cellHeight={180} style={styles.gridList}>
+    </div>
+  )
+}
+
+/**
+ * CONTAINER
+ */
+const mapStateToProps = (state) => {
+  return {
+    products: state.products
+  }
+}
+
+export default connect(mapStateToProps)(FilteredByCategory)
+  /* <GridList cellHeight={180} style={styles.gridList}>
         <Subheader>Product List</Subheader>
         {
               props.products.map((product)=>{
@@ -66,18 +98,4 @@ const styles = {
               })
           }
          
-      </GridList> */}
-    </div>
-  )
-}
-
-/**
- * CONTAINER
- */
-const mapStateToProps = (state) => {
-  return {
-    products: state.products
-  }
-}
-
-export default connect(mapStateToProps)(FilteredByCategory)
+      </GridList> */
