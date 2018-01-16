@@ -10,7 +10,6 @@ export const Categories = (props) => {
                <ul>
                 {props.categories.map(category=>{
                     return(
-                      // console.log('category.id:', category.id)
                       <Link key={category.id} to={`/products/category/${category.id}`}> 
                         <li key={category.id}>{category.name}</li>
                       </Link>

@@ -14,12 +14,12 @@ const Order = require('./order')
  *
  *    BlogPost.belongsTo(User)
  */
-Review.belongsTo(Product);
-Review.belongsTo(User)
+
+Product.hasMany(Review)
+User.hasMany(Review)
 
 Product.belongsTo(Category)
 Category.hasMany(Product)
-
 
 User.hasMany(Order)
 Order.belongsToMany(Product, { through: OrderProducts })

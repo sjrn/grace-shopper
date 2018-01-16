@@ -19,8 +19,7 @@ import { addCartItem } from '../store'
  * COMPONENT
  */
 export const FilteredByCategory = (props) => {
-  const categoryId = Number(props.match.params.id);
-    console.log('==================', props)    
+  const categoryId = Number(props.match.params.id); 
 const styles = {
   root: {
     display: 'flex',
