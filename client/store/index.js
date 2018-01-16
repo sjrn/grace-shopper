@@ -9,7 +9,6 @@ import cart from './cart';
 import reviews from './reviews'
 import selectedProduct from './selected-product';
 import selectedOrder from './selected-order';
-import searchedProduct from './searched-product';
 import categories from './categories';
 import orders from './orders';
 
@@ -19,7 +18,6 @@ const reducer = combineReducers({
 	reviews,
   selectedProduct,
 	selectedOrder,
-	searchedProduct,
 	categories,
   cart,
   orders
