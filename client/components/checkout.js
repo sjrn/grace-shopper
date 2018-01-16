@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import { checkoutCart } from '../store/cart';
+import { checkoutCart } from '../store/orders';
+import { resetCartAction } from '../store/cart';
 
 
 /**
@@ -34,7 +35,7 @@ class Checkout extends Component {
       <div>
         <form onSubmit={(event) => {
           event.preventDefault()
-          this.props.checkoutOrder(this.state.emailAddr)
+          this.props.checkoutOrder(this.props.cart, this.state.emailAddr)
         }} >
           <TextField
             defaultValue=""
@@ -59,15 +60,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    checkoutOrder(email) {
+    checkoutOrder(cart, email) {
       dispatch(checkoutCart(
         {
+          cart,
+
           from: 'grace.shoppa@grace.shoppa.com',
           to: email,
           subject: 'Order confirmation',
-          text: 'Your order is on the way!',
+          text: 'Your order is on the way!', // TO-DO: Format output to reflect cart?
           html: '<b>Your order is on the way!</b>'
-        }));
+        }))
+        dispatch(resetCartAction())
         ownProps.history.push('/confirmation') // check if error occurred?
     }
   }

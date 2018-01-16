@@ -4,6 +4,10 @@ import axios from 'axios'
 
 // Action types
 const GET_CART = 'GET_CART'
+
+// TO-DO: Maybe a desicated route to reset cart instead of doing it while
+// checking out via post route in orders.js file?
+const RESET_CART = 'RESET_CART'
 const ADD_CART_ITEM = 'ADD_CART_ITEM'
 const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM'
 const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
@@ -13,6 +17,12 @@ export function getCartAction(cart) {
   return {
     type: GET_CART,
     cart
+  };
+}
+
+export function resetCartAction() {
+  return {
+    type: RESET_CART
   };
 }
 
@@ -87,14 +97,14 @@ export function deleteCartItem(productId, history) {
   }
 }
 
-export function checkoutCart(email, history) {
-  return function thunk(dispatch) {
-    return axios.post('/api/carts/checkout', email)
-      .then(res => res.data)
-      .then(() => console.log('Email was sent successfully'))
-      .catch(console.error)
-  }
-}
+// export function checkoutCart(email, history) {
+//   return function thunk(dispatch) {
+//     return axios.post('/api/carts/checkout', email)
+//       .then(res => res.data)
+//       .then(() => console.log('Email was sent successfully'))
+//       .catch(console.error)
+//   }
+// }
 
 // Reducer
 export default function reducer(state = [], action) {
@@ -104,6 +114,9 @@ export default function reducer(state = [], action) {
   switch (action.type) {
     case GET_CART:
       return action.cart
+
+    case RESET_CART:
+      return []
     case ADD_CART_ITEM:
       return [...state, action.item]
     case UPDATE_CART_ITEM:
