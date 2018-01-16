@@ -9,6 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart'
 import SearchBar from './search-bar';
 import Categories from './categories';
+import title from 'material-ui/svg-icons/editor/title';
 
 /**
  * COMPONENT
@@ -16,8 +17,13 @@ import Categories from './categories';
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
+
+
+
+
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
+
 
   return (
 
@@ -25,30 +31,63 @@ const Main = (props) => {
       {/* TODO: Redirect to home page upon title click */}
       <AppBar
         title="Grace Shoppa"
+        style={{backgroundColor: 'black',height: 70}}
+        iconElementLeft={
+          <Link to='/home/'>
+            <div className='drum-size'>🥁</div>
+          </Link>
+
+        }
         iconElementRight={
           <div className="header-right">
-            <SearchBar></SearchBar>
+            <div className='navbar-search'><SearchBar></SearchBar></div>
             <div className="navbar-buttons">
-              <Link to="/home">
-                <RaisedButton className="navbar-button" label="Home"></RaisedButton>
-              </Link>
+              {/* <Link to="/home">
+                <button   
+                  labelStyle={{ fontSize: '10px'}} 
+                  className="navbar-button" 
+                  label="Home"
+                  ></button> 
+              </Link> */}
               <Link to="/login">
-                <RaisedButton className="navbar-button" label="Login"></RaisedButton>
+                <RaisedButton 
+                  labelStyle={{ fontSize: '12px'}} 
+                  className="navbar-button" 
+                  label="Login"
+                  ></RaisedButton>
               </Link>
               <Link to="/signup">
-                <RaisedButton className="navbar-button" label="Sign up"></RaisedButton>
+                <RaisedButton 
+                  labelStyle={{ fontSize: '12px'}} 
+                  className="navbar-button" 
+                  label="Sign up"
+                  ></RaisedButton>
               </Link>
               <Link to='/cart'>
                 <RaisedButton 
+                  labelStyle={{ fontSize: '12px'}}
                   className="navbar-button" 
                   icon={<ShoppingCartIcon />}
-                  label={`(${props.cartAmount})`}>
-                </RaisedButton>
-              </Link>
+                  label={`(${props.cartAmount})`}
+                  ></RaisedButton>
+              </Link> 
             </div>
           </div>
         }
       />
+      {/* <div className='header'>
+      <div><Link className='logo' to="/home">Grace Shoppa  🛒</Link></div>
+      <div className="header-right">
+            <SearchBar></SearchBar>
+            <div className="navbar-buttons">
+              <Link className='navbar-button' to="/login">Login</Link>
+              <Link className='navbar-button' to="/signup">Sign up</Link>
+              <Link className='navbar-button' to='/cart'>
+                  <ShoppingCartIcon />{`(${props.cartAmount})`}
+              </Link>
+            </div>
+          </div>
+      </div> */}
       
       <nav>
         {

@@ -54,8 +54,8 @@ const styles = {
                     // </GridTile>
                       
                         <div className ="category-filter">
-                        {product.name}
-                        <img src ={product.imageUrl}/>
+                          {product.name}
+                          <img src ={product.imageUrl}/>
                         </div>
                         
                     )
